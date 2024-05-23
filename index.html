@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 60%;
+            max-width: 600px;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            top: 50%;
+            left: 30%;
+        }
+        .clockholder{
+             width: 70%;
+             background-color: darkgrey;
+             padding: 30px 50px;
+             border-radius: 15px;
+             border: 3px solid  black;
+             box-shadow: rgba(222,238,42,0.1) 0px 4px 6px;
+             position: relative;
+        }
+        .clockholder::after{
+            content: " ";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            width: 70%;
+            height: 15px;
+            background-color:gold;
+            transform: translate(-50%,0);
+            border-radius: 3px 3px 8px 8px;
+        }
+        
+        .clockholder::before{
+            content: " ";
+            position: absolute;
+            width: 110%;
+            height: 10px;
+            background-color:darkslategray;
+            bottom: -13%;
+            left: -5%;
+            border-radius: 100%;
+            filter: blur(5px);
+        }
+
+        .timeHolder{
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            
+            
+        }
+        .options{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            color:aliceblue;
+        }
+
+        .maindiv{
+            width: 100%;
+            text-align: center;
+            background-color: gold;
+
+        }
+        #clock{
+            font-size: 3rem;
+        }
+        body{
+            background-color: black;
+        }
+        h1{
+            color: gold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>DIGITAL CLOCK</h1>
+    <div class="container">
+        <div class="clockholder">
+            <div class="timeHolder">
+            <div class="options">
+                <i class="fas fa-clock" data-title="Time"></i>
+                <i class="fas fa-stopwatch" data-title="StopWatch"></i>
+                <i class="far fa-clock" data-title="CountDown"></i>
+            </div>
+            <div class="maindiv">
+                <p id="clock"></p>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const currentTime=()=>{
+            let time=new Date().toLocaleTimeString();
+            document.getElementById("clock").innerText=time;
+        }
+        
+       const interval= setInterval(()=>{
+            currentTime();
+        },1000);
+
+         setTimeout(()=>{
+           clearTimeout(interval);
+         },10000);
+    </script>
+</body>
+</html>
+
